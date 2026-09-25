@@ -1,0 +1,8 @@
+{
+  "name": "BassForge - VST3 MIDI Bass Generator",
+  "description": "Professional Windows VST3 intelligent bass generator, multi-layer synthesizer, harmonic shaper, and bass preprocessor with hearability analysis and DAW MIDI export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
