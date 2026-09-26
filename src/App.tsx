@@ -3,7 +3,7 @@ import { HardwarePluginView } from './components/HardwarePluginView';
 import { CodeInspector } from './components/CodeInspector';
 import { TestConsole } from './components/TestConsole';
 import { DawGuideModal } from './components/DawGuideModal';
-import { Sliders, FolderGit2, CheckCircle2, BookOpen, Activity } from 'lucide-react';
+import { Sliders, FolderGit2, CheckCircle2, BookOpen } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'studio' | 'code' | 'tests'>('studio');
@@ -11,110 +11,92 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#07090e] text-zinc-200 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* Top Application Bar - Clean 3-zone Top Bar Contract */}
-      <header className="border-b border-zinc-800/80 bg-[#0a0d14] px-4 md:px-8 py-3 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          {/* Zone 1: Single element wordmark & domain subtitle */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-cyan-950/80 border border-cyan-700/80 flex items-center justify-center text-cyan-400">
-              <Activity className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-base tracking-wider text-white font-mono">BASSFORGE</span>
-                <span className="text-xs text-zinc-500 font-mono">·</span>
-                <span className="text-xs font-mono text-cyan-400">VST3 · C++20 · JUCE</span>
-              </div>
-              <div className="text-[11px] text-zinc-400 font-mono">
-                Intelligent Bass Generator & Acoustic Preprocessor
-              </div>
-            </div>
-          </div>
+      {/* Top Bar Contract: Zone 1 (Wordmark) - Zone 2 (Navigation) - Zone 3 (Action) */}
+      <header className="border-b border-zinc-800/80 bg-[#090b12] px-4 md:px-8 py-3 sticky top-0 z-40 shadow-md">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          {/* Zone 1: Single element wordmark */}
+          <span className="font-mono font-black text-lg tracking-wider text-white">
+            BassForge Audio
+          </span>
 
-          {/* Zone 2: Navigation Tabs */}
-          <nav className="flex items-center gap-1.5 p-1 bg-[#06080c] border border-zinc-800 rounded-lg">
+          {/* Zone 2: Navigation Links / Mode Selectors */}
+          <nav className="flex items-center gap-1.5 p-1 bg-[#05070c] border border-zinc-800 rounded-lg">
             <button
               onClick={() => setActiveTab('studio')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md transition-colors cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'studio'
-                  ? 'bg-zinc-800/90 text-white font-semibold shadow-sm text-cyan-300'
+                  ? 'bg-zinc-800 text-cyan-300 font-bold shadow-sm'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
               <Sliders className="w-3.5 h-3.5 text-cyan-400" />
-              Bass Laboratory
+              <span>VST3 Bass Rack</span>
             </button>
 
             <button
               onClick={() => setActiveTab('code')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md transition-colors cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'code'
-                  ? 'bg-zinc-800/90 text-white font-semibold shadow-sm text-cyan-300'
+                  ? 'bg-zinc-800 text-blue-300 font-bold shadow-sm'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
               <FolderGit2 className="w-3.5 h-3.5 text-blue-400" />
-              C++ Codebase & CMake
+              <span>C++ DSP Codebase</span>
             </button>
 
             <button
               onClick={() => setActiveTab('tests')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md transition-colors cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'tests'
-                  ? 'bg-zinc-800/90 text-white font-semibold shadow-sm text-emerald-300'
+                  ? 'bg-zinc-800 text-emerald-300 font-bold shadow-sm'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-              DSP Tests & Invariants
+              <span>Verification Tests</span>
             </button>
           </nav>
 
-          {/* Zone 3: DAW Integration Guide Action */}
+          {/* Zone 3: 1-2 primary actions */}
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsDawModalOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono rounded-md bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 cursor-pointer transition-colors"
+              className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono rounded-md bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-800 cursor-pointer transition-colors whitespace-nowrap shadow-xs"
             >
               <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
-              DAW Guide
+              <span>DAW Integration Guide</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8">
+      {/* Main Content Viewport */}
+      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-5 md:p-6">
         {activeTab === 'studio' && (
-          <div className="space-y-6">
-            <HardwarePluginView onOpenDawGuide={() => setIsDawModalOpen(true)} />
-          </div>
+          <HardwarePluginView onOpenDawGuide={() => setIsDawModalOpen(true)} />
         )}
 
         {activeTab === 'code' && (
-          <div className="space-y-6">
-            <CodeInspector />
-          </div>
+          <CodeInspector />
         )}
 
         {activeTab === 'tests' && (
-          <div className="space-y-6">
-            <TestConsole />
-          </div>
+          <TestConsole />
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-900 bg-[#07090e] py-4 px-6 text-center text-xs text-zinc-500 font-mono">
+      {/* Clean Studio Footer */}
+      <footer className="border-t border-zinc-900 bg-[#05070c] py-3.5 px-6 text-xs text-zinc-500 font-mono">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          <span>BassForge Audio · Windows 10/11 x64 VST3 & Standalone</span>
+          <span>BassForge DSP · JUCE / C++20 VST3 Architecture</span>
           <div className="flex items-center gap-3 text-zinc-500">
             <span>Ableton Live Ready</span>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <span>FL Studio Ready</span>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <span>Standard MIDI (.mid) 960 PPQ</span>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <span>Linkwitz-Riley Crossover</span>
           </div>
         </div>
